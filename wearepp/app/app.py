@@ -8,6 +8,10 @@ import imageblur
 import webcam
 
 app = Flask(__name__)
+app.config.update(
+    APPLICATION_ROOT='/',
+    PREFERRED_URL_SCHEME='http'
+)
 socketio = SocketIO(app)
 
 # 파일 업로드를 위한 디렉토리 설정
@@ -212,5 +216,4 @@ def get_result_webcam_video_with_audio():
     return send_from_directory(app.config['OUTPUT_FOLDER'], 'result_webcam_video_with_audio.mp4')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    socketio.run(app, debug=True, host='0.0.0.0', port=port, allow_unsafe_werkzeug=True)
+    socketio.run(app, debug=True)
