@@ -216,5 +216,7 @@ def get_result_webcam_video_with_audio():
     return send_from_directory(app.config['OUTPUT_FOLDER'], 'result_webcam_video_with_audio.mp4')
 
 if __name__ == '__main__':
-    socketio.run(app)
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, host='0.0.0.0', port=port)
+
 
